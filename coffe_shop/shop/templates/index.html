@@ -1,23 +1,38 @@
 <!doctype html>
 <html>
 <head>
-    <title>Our Funky HTML Page</title>
+    <title>Coffee</title>
     <meta name="description" content="Our first page">
     <meta name="keywords" content="html tutorial template">
 </head>
 <body>
 <div class="container page-wrapper">
-    <div class="page-inner">
-        <div class="row">
+    <div class="page-inner" style="display: flex !important;">
+        {% for item in items %}
+            <span><div class="row">
             <div class="el-wrapper">
                 <div class="box-up">
-                    <img class="img" src="http://code.slicecrowd.com/labs/4/images/t-shirt.png" alt="">
+                    {% if item.type == 'Tea' %}
+                        <img class="img"
+                             src="https://www.pngitem.com/pimgs/m/5-53757_cup-of-sweet-tea-cup-of-tea-clipart.png"
+                             alt="">
+                    {% endif %}
+                    {% if item.type == 'Coffee' %}
+                        <img class="img"
+                             src="https://www.pngitem.com/pimgs/m/234-2346555_cup-clipart-coffie-tiny-coffee-cup-clipart-hd.png"
+                             alt="">
+                    {% endif %}
+                    {% if item.type == 'Juice' %}
+                        <img class="img"
+                             src="https://www.kindpng.com/picc/m/737-7376887_leanhealthcare-1-clipart-of-a-juice-juice-box.png"
+                             alt="">
+                    {% endif %}
                     <div class="img-info">
                         <div class="info-inner">
-                            <span class="p-name">I feel like Pablo</span>
-                            <span class="p-company">Yeezy</span>
+                            <span class="p-name">{{ item.type }}</span>
+                            <span class="p-company">{{ item.subtype.name }}</span>
                         </div>
-                        <div class="a-size">Available sizes : <span class="size">S , M , L , XL</span></div>
+                        <div class="a-size"><span class="size"><b>{{ item.size }}</b> cup</span></div>
                     </div>
                 </div>
 
@@ -27,14 +42,15 @@
                     </div>
 
                     <a class="cart" href="#">
-                        <span class="price">$120</span>
+                        <span class="price">DKK {{ item.get_price_with_vat }}</span>
                         <span class="add-to-cart">
               <span class="txt">Add in cart</span>
             </span>
                     </a>
                 </div>
             </div>
-        </div>
+        </div></span>
+        {% endfor %}
     </div>
 </div>
 </body>
@@ -71,14 +87,9 @@
         background-color: #f7f7f7;
     }
 
-    .page-wrapper {
-        height: 100%;
-        display: table;
-    }
-
     .page-wrapper .page-inner {
-        display: table-cell;
-        vertical-align: middle;
+        display: flex;
+        flex-direction: row;
     }
 
     .el-wrapper {
