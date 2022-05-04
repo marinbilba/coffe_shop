@@ -59,31 +59,31 @@ class Drink(Product):
 
     def get_price_without_vat(self):
         initial_price = 0.0
-        if self.type == 'Tea':
-            if self.sub_type == 'Green':
+        if self.type == DrinkTypes.Tea.name:
+            if self.sub_type == TeaTypes.Green.name:
                 initial_price = 11.0
-            elif self.sub_type == 'Black':
+            elif self.sub_type == TeaTypes.Black.name:
                 initial_price = 12.0
-            elif self.sub_type == 'Mint':
+            elif self.sub_type == TeaTypes.Mint.name:
                 initial_price = 13.0
-        elif self.type == 'Coffee':
-            if self.sub_type == 'Espresso':
+        elif self.type == DrinkTypes.Coffee.name:
+            if self.sub_type == CoffeeTypes.Espresso.name:
                 initial_price = 21.0
-            elif self.sub_type == 'Latte':
+            elif self.sub_type == CoffeeTypes.Latte.name:
                 initial_price = 22.0
-            elif self.sub_type == 'Americano':
+            elif self.sub_type == CoffeeTypes.Americano.name:
                 initial_price = 23.0
-        elif self.type == 'Juice':
-            if self.sub_type == 'Apple':
+        elif self.type == DrinkTypes.Juice.name:
+            if self.sub_type == JuiceType.Apple.name:
                 initial_price = 31.0
-            elif self.sub_type == 'Orange':
+            elif self.sub_type == JuiceType.Orange.name:
                 initial_price = 32.0
-            elif self.sub_type == 'Carrot':
+            elif self.sub_type == JuiceType.Carrot.name:
                 initial_price = 33.0
 
-        if self.size == 'Small':
+        if self.size == DrinkSizes.Small.name:
             return initial_price
-        elif self.size == 'Medium':
+        elif self.size == DrinkSizes.Medium.name:
             return initial_price + initial_price * 0.25
-        elif self.size == 'Large':
+        elif self.size == DrinkSizes.Large.name:
             return initial_price + initial_price * 0.50
