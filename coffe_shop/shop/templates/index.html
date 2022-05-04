@@ -46,7 +46,8 @@
                     <a class="cart" href="#">
                         <span class="price">DKK {{ item.get_price_with_vat }}</span>
                         <span class="add-to-cart">
-              <span class="txt">Add in cart</span>
+                                              <span id="__{{ item.get_price_with_vat }}__" class="txt"
+                                                    onclick="itemClicked({{ item.get_price_with_vat }})">Add in cart</span>
             </span>
                     </a>
                 </div>
@@ -57,11 +58,34 @@
 <div class="snackbar">
     <div>
         <span>To pay:</span>
-
+        <span>{{ total_price }}</span>
     </div>
-    <button>Buy</button>
+
+    <button onclick="buyClicked( {{ total_price }})">Buy</button>
 </div>
 </body>
+
+<script>
+    function itemClicked(price) {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("GET", 'http://127.0.0.1:8000/add_to_cart/' + price, false);
+        xmlHttp.send(null);
+        location.reload()
+    }
+
+    function resetPrice() {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("GET", 'http://127.0.0.1:8000/reset_price', false);
+        xmlHttp.send(null);
+        location.reload()
+    }
+
+    function buyClicked(totalPrice) {
+        if (confirm("You have to pay: " + totalPrice + ' DKK') === true) {
+            this.resetPrice()
+        }
+    }
+</script>
 
 <style>
     .snackbar {
