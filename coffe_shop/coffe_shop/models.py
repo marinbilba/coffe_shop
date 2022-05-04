@@ -53,6 +53,7 @@ class Drink(Product):
         self.sub_type = drink_subtype.name
         self.size = drink_size.name
 
+
     def to_string(self):
         print("type: " + self.type + '; sub_type: ' + self.sub_type + '; size: ' + self.size)
 
