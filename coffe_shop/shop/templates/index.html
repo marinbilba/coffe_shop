@@ -1,15 +1,17 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
     <title>Coffee</title>
     <meta name="description" content="Our first page">
     <meta name="keywords" content="html tutorial template">
 </head>
 <body>
-<div class="container page-wrapper">
-    <div class="page-inner" style="display: flex !important;">
-        {% for item in items %}
-            <span><div class="row">
+<div class="container">
+    <span class="header">Welcome to our canteen</span>
+</div>
+<div class="container">
+    {% for item in items %}
+        <span class="item"><div class="row">
             <div class="el-wrapper">
                 <div class="box-up">
                     {% if item.type == 'Tea' %}
@@ -50,15 +52,25 @@
                 </div>
             </div>
         </div></span>
-        {% endfor %}
-    </div>
+    {% endfor %}
 </div>
 </body>
 
 <style>
-    body,
-    html {
-        height: 100%;
+    .header {
+        font-size: 30px;
+        margin: 10px;
+    }
+
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .item {
+        margin: 15px;
+        box-shadow: 1px 1px 10px #888888;
     }
 
     .d-flex {
@@ -85,11 +97,6 @@
 
     body {
         background-color: #f7f7f7;
-    }
-
-    .page-wrapper .page-inner {
-        display: flex;
-        flex-direction: row;
     }
 
     .el-wrapper {
